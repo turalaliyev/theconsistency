@@ -1,0 +1,15 @@
+const DUMMY_DATA = [
+  {
+    id: 1,
+    title: 'Britain is supplying depleted uranium round to Ukraine',
+    description:
+      'British tanks gifted to Ukraine will come equipped with controversial depleted uranium rounds.',
+    author: 'Phil Miller',
+    date: new Date('2023-03-23'),
+    image:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Panzer_II_Saumur.JPG/1200px-Panzer_II_Saumur.JPG',
+    category: ['Europe', 'Britain'],
+  },
+];
+
+export default DUMMY_DATA;
