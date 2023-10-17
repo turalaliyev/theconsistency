@@ -1,7 +1,6 @@
 import {
   Card,
   CardBody,
-  CardFooter,
   Typography,
   Button,
 } from '@material-tailwind/react';
@@ -20,16 +19,16 @@ export default function LatestCard() {
   };
 
   return (
-    <Card className="mb-3 mx-2 w-auto">
+    <Card className="mb-3 mx-2 w-auto rounded-none">
       <CardBody>
         <Typography variant="h6" color="blue-gray" className="mb-2">
           {data.title}
         </Typography>
         <Typography>{data.description}</Typography>
+        <div className='grid justify-items-end'>
+          <Button variant="text">Read More</Button>
+        </div>
       </CardBody>
-      <CardFooter className="pt-0">
-        <Button variant="text">Read More</Button>
-      </CardFooter>
     </Card>
   );
 }

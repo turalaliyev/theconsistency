@@ -1,10 +1,10 @@
 import React from 'react';
-import { Carousel, Typography } from '@material-tailwind/react';
+import { Carousel } from '@material-tailwind/react';
 import TopNewsCart from '../UI/TopNewsCard';
 
 function TopNews() {
+
   const article = {
-    id: 0,
     title: 'Britain is supplying depleted uranium round to Ukraine',
     description:
       'The new one-woman play ‘The Road to Damascus’ reinterprets the biblical story of Saul and the tale of Little Red Riding Hood as an allegory for white complicity in the US prison system and the possibility of redemption through anti-racism.',
@@ -24,14 +24,11 @@ function TopNews() {
 
   return (
     <div>
-      <h1 className="pb-2 text-center text-2xl">
-        <Typography variant="lead">Top News</Typography>
-      </h1>
       <Carousel
-        className="rounded-xl h-[460px] md:h-96"
+        className="h-[450px] md:h-96"
         loop={true}
         autoplay={true}
-        duration="5000"
+        duration="9000"
       >
         {articles.map(article => {
           return (

@@ -30,6 +30,16 @@ function Header() {
       </Typography>
       <Typography as="li" color="blue-gray" className="p-1 font-normal">
         <a href="/" className="flex items-center">
+          Business
+        </a>
+      </Typography>
+      <Typography as="li" color="blue-gray" className="p-1 font-normal">
+        <a href="/" className="flex items-center">
+          World
+        </a>
+      </Typography>
+      <Typography as="li" color="blue-gray" className="p-1 font-normal">
+        <a href="/" className="flex items-center">
           About
         </a>
       </Typography>
