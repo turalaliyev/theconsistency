@@ -3,7 +3,6 @@ import { Carousel } from '@material-tailwind/react';
 import TopNewsCart from '../UI/TopNewsCard';
 
 function TopNews() {
-
   const article = {
     title: 'Britain is supplying depleted uranium round to Ukraine',
     description:

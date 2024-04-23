@@ -7,6 +7,7 @@ import {
   Input,
   Collapse,
 } from '@material-tailwind/react';
+import { Link } from 'react-router-dom';
 
 function Header() {
   const [openNav, setOpenNav] = useState(false);
@@ -24,24 +25,16 @@ function Header() {
   const navList = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-10">
       <Typography as="li" color="blue-gray" className="p-1 font-normal">
-        <a href="/" className="flex items-center">
-          Latest
-        </a>
+        <Link to="/business">Business</Link>
       </Typography>
       <Typography as="li" color="blue-gray" className="p-1 font-normal">
-        <a href="/" className="flex items-center">
-          Business
-        </a>
+        <Link to="/world">World</Link>
       </Typography>
       <Typography as="li" color="blue-gray" className="p-1 font-normal">
-        <a href="/" className="flex items-center">
-          World
-        </a>
+        <Link to="/economy">Economy</Link>
       </Typography>
       <Typography as="li" color="blue-gray" className="p-1 font-normal">
-        <a href="/" className="flex items-center">
-          About
-        </a>
+        <Link to="/about">About us</Link>
       </Typography>
       <div className="md:w-46">
         <Input label="Search" value={search} onChange={onChange} />
@@ -58,12 +51,12 @@ function Header() {
             href="#"
             className="mr-4 cursor-pointer py-1.5 font-medium"
           >
-            CONSISTENCY
+            <Link to="/">CONSISTENCY</Link>
           </Typography>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <Button variant="text" size="lg" className="hidden lg:inline-block">
-              <span>Login</span>
+              <span>Subscribe</span>
             </Button>
             <IconButton
               variant="text"
@@ -107,7 +100,7 @@ function Header() {
         <Collapse open={openNav}>
           {navList}
           <Button variant="text" size="sm" fullWidth className="mb-2">
-            <span>Login</span>
+            <span>Subscribe</span>
           </Button>
         </Collapse>
       </Navbar>

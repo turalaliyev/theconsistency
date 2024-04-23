@@ -1,27 +1,45 @@
 import Footer from './Footer';
 import Header from './Header';
-import TopNews from './TopNews';
-import LatestCard from './UI/LatestCard';
-import EuropeNews from './EuropeNews';
+import Home from './Pages/Home';
+import BusinessPage from './Pages/Business';
+import ErrorPage from './Pages/ErrorPage';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import EconomyPage from './Pages/Economy';
+import WorldPage from './Pages/World';
+import AboutPage from './Pages/About';
+import ArticlePage from './Pages/ArticlePage';
 
 function App() {
+  // const router = createBrowserRouter([
+  //   {
+  //     path: '/',
+  //     element: <Home />,
+  //     errorElement: <ErrorPage />,
+  //   },
+  //   {
+  //     path: 'business',
+  //     element: <BusinessPage />,
+  //   },
+  // ]);
+
   return (
-    <div>
-      <Header />
-      <div className="">
-        <div className="mb-3">
-          <TopNews />
+    <BrowserRouter>
+      <div className="flex flex-col min-h-screen">
+        <div style={{ minHeight: 'calc(100vh - 80px)' }}>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="article/:id" element={<ArticlePage />} />
+            <Route path="business" element={<BusinessPage />} />
+            <Route path="economy" element={<EconomyPage />} />
+            <Route path="world" element={<WorldPage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
-          <LatestCard />
-          <LatestCard />
-          <LatestCard />
-          <LatestCard />
-        </div>
-        <EuropeNews />
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </BrowserRouter>
   );
 }
 
