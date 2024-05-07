@@ -10,18 +10,6 @@ import AboutPage from './Pages/About';
 import ArticlePage from './Pages/ArticlePage';
 
 function App() {
-  // const router = createBrowserRouter([
-  //   {
-  //     path: '/',
-  //     element: <Home />,
-  //     errorElement: <ErrorPage />,
-  //   },
-  //   {
-  //     path: 'business',
-  //     element: <BusinessPage />,
-  //   },
-  // ]);
-
   return (
     <BrowserRouter>
       <div className="flex flex-col min-h-screen">
