@@ -1,7 +1,6 @@
 import { Typography } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import LatestCard from '../../UI/LatestCard';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { Spin } from 'antd';
@@ -23,6 +22,8 @@ export default function ArticlePage() {
     }
     setLoading(false);
   };
+
+  console.log(data?.paragraph);
 
   useEffect(() => {
     getData(params.id);
@@ -51,7 +52,6 @@ export default function ArticlePage() {
                   className="h-full w-full object-cover"
                 />
               </div>
-              <div className="mb-4">Brusselin petuxlari</div>
               <div className="flex items-center">
                 <Typography variant="p" className="mr-4">
                   By {data.author}
@@ -63,19 +63,10 @@ export default function ArticlePage() {
             </div>
           </div>
           <div className="p-8 md:ml-32 md:mr-72">
-            {/* <Typography variant="p">{EuropeNews.article}</Typography> */}
-            <Typography variant="p">{data.paragraph}</Typography>
-          </div>
-          <div className="mx-12">
-            <Typography className="flex justify-center" variant="h1">
-              Read More
-            </Typography>
-            <div className="flex">
-              <LatestCard />
-              <LatestCard />
-              <LatestCard />
-              <LatestCard />
-            </div>
+            <div
+              className="prose prose-lg mt-4"
+              dangerouslySetInnerHTML={{ __html: data.paragraph }}
+            ></div>
           </div>
         </div>
       )}

@@ -13,7 +13,10 @@ module.exports = withMT({
       colors: {
         primary: '#f3f3f3',
       },
+      fontFamily: {
+        sans: ['Merriweather', 'serif'],
+      },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 });

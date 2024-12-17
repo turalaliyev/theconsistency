@@ -1,23 +1,19 @@
 import React from 'react';
 import TopNews from '../../TopNews';
-import LatestCard from '../../UI/LatestCard';
 import EuropeNews from '../../EuropeNews';
+import LatestNews from '../../components/LatestNews';
 
 function Home() {
   return (
     <div>
       <div className="">
-        <div className="mb-3">
+        <div className="mb-1">
           <TopNews />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
-          <LatestCard />
-          <LatestCard />
-          <LatestCard />
-          <LatestCard />
-        </div>
-        <EuropeNews />
-        <EuropeNews />
+        <LatestNews />
+        <EuropeNews category="europe" />
+        <EuropeNews category="business" />
+        <EuropeNews category="asia" />
       </div>
     </div>
   );

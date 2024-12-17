@@ -5,7 +5,7 @@ import { Spin } from 'antd';
 import { db } from '../../firebase';
 import { Link } from 'react-router-dom';
 
-function WorldPage() {
+function AsiaPage() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 
@@ -14,7 +14,7 @@ function WorldPage() {
     try {
       const q = query(
         collection(db, 'articles'),
-        where('categories', 'array-contains', 'world'),
+        where('categories', 'array-contains', 'asia'),
         limit(5)
       );
       const querySnapshot = await getDocs(q);
@@ -78,4 +78,4 @@ function WorldPage() {
   );
 }
 
-export default WorldPage;
+export default AsiaPage;

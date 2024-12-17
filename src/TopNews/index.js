@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Carousel, Spin } from 'antd';
+import { Carousel, Skeleton } from 'antd';
 import { TopNewsCart } from '../UI/TopNewsCard';
 
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, where, limit } from 'firebase/firestore';
 import { db } from '../firebase';
 
 function TopNews() {
@@ -12,7 +12,12 @@ function TopNews() {
   const getData = async () => {
     setLoading(true);
     try {
-      const querySnapshot = await getDocs(collection(db, 'articles'));
+      const q = query(
+        collection(db, 'articles'),
+        where('categories', 'array-contains', 'topnews'),
+        limit(5)
+      );
+      const querySnapshot = await getDocs(q);
       setData(querySnapshot.docs);
     } catch (error) {
       console.log(error);
@@ -24,14 +29,24 @@ function TopNews() {
     getData();
   }, []);
 
+  if (loading) {
+    return (
+      <div>
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
+      </div>
+    );
+  }
+
   return (
     <>
-      <Spin spinning={loading} fullscreen />
       <div>
         <Carousel
           arrows
-          autoplay="true"
-          infinite="true"
+          autoplay={true}
+          infinite={true}
           autoplaySpeed={5000}
           className="relative"
         >

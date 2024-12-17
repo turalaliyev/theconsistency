@@ -1,61 +1,69 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Typography, Card, Button } from '@material-tailwind/react';
+import { collection, getDocs, limit, query, where } from 'firebase/firestore';
+import { db } from '../firebase';
+import { Flex, Spin } from 'antd';
+import { Link } from 'react-router-dom';
 
-export default function EuropeNews() {
-  const EuropeNews = {
-    id: 1,
-    title: 'Brussels shooting: Police shoot dead attacker who killed Swedes',
-    description:
-      'Belgian police have shot dead a man who killed two Swedish nationals in the capital, Brussels, on Monday evening.',
-    author: 'Sofia Bettiza',
-    date: new Date('2023-10-17'),
-    image:
-      'https://ichef.bbci.co.uk/news/820/cpsprodpb/14109/production/_131458128_4382023bd983ca977229fb8d2e5d96e0629aab140_461_4700_26452000x1125.jpg',
-    category: ['Europe', 'Brussels'],
+export default function EuropeNews(props) {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    setLoading(true);
+    try {
+      const q = query(
+        collection(db, 'articles'),
+        where('categories', 'array-contains', props.category),
+        limit(3)
+      );
+      const querySnapshot = await getDocs(q);
+      setData(querySnapshot.docs);
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
   };
 
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <div>
+    <div className="">
+      <Spin spinning={loading} />
       <Typography variant="h4" className="ml-2 mb-3">
-        Europe
+        {props.category.toUpperCase()}
       </Typography>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="mb-3 mx-2 w-auto max-w-md rounded-none">
-          <img src={EuropeNews.image} alt="Brussels Tragedy" />
-          <div className="p-2">
-            <Typography variant="h5">{EuropeNews.title}</Typography>
-            <Typography>{EuropeNews.description}</Typography>
-            <div className="flex justify-between items-center">
-              <Typography variant="h6">{EuropeNews.author}</Typography>
-              <Button variant="text">READ MORE</Button>
-            </div>
-          </div>
-        </Card>
-        <Card className="mb-3 mx-2 w-auto max-w-md rounded-none">
-          <img
-            src="https://www.hindustantimes.com/ht-img/img/2023/10/17/550x309/Iran-Protests-The-Diaspora-21_1665570117555_1665570117555_1697558887955.jpg"
-            alt="Brussels Tragedy"
-          />
-          <div className="p-2">
-            <Typography variant="h5">{EuropeNews.title}</Typography>
-            <Typography>{EuropeNews.description}</Typography>
-            <div className="flex justify-between items-center">
-              <Typography variant="h6">{EuropeNews.author}</Typography>
-              <Button variant="text">READ MORE</Button>
-            </div>
-          </div>
-        </Card>
-        <Card className="mb-3 mx-2 w-auto max-w-md rounded-none">
-          <img src={EuropeNews.image} alt="Brussels Tragedy" />
-          <div className="p-2">
-            <Typography variant="h5">{EuropeNews.title}</Typography>
-            <Typography variant="p">{EuropeNews.description}</Typography>
-            <div className="flex justify-between items-center">
-              <Typography variant="h6">{EuropeNews.author}</Typography>
-              <Button variant="text">READ MORE</Button>
-            </div>
-          </div>
-        </Card>
+        {data.map(doc => {
+          const info = doc.data();
+          return (
+            <Card
+              key={doc.id}
+              className="mb-3 mx-2 w-auto max-w-md rounded-none"
+            >
+              <Flex className=" object-cover">
+                <img
+                  className="w-full h-64 object-cover"
+                  src={info.imageLink}
+                  alt={info.title}
+                />
+              </Flex>
+              <div className="p-2 h-full flex flex-col justify-between">
+                <div>
+                  <Typography variant="h5">{info.title}</Typography>
+                </div>
+                <div className="flex justify-between items-center">
+                  <Typography variant="h6">{info.author}</Typography>
+                  <Link to={`/article/${doc.id}`}>
+                    <Button variant="text">READ MORE</Button>
+                  </Link>
+                </div>
+              </div>
+            </Card>
+          );
+        })}
       </div>
     </div>
   );

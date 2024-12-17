@@ -31,7 +31,7 @@ function Header() {
         <Link to="/world">World</Link>
       </Typography>
       <Typography as="li" color="blue-gray" className="p-1 font-normal">
-        <Link to="/economy">Economy</Link>
+        <Link to="/asia">Asia</Link>
       </Typography>
       <Typography as="li" color="blue-gray" className="p-1 font-normal">
         <Link to="/about">About us</Link>
@@ -46,11 +46,7 @@ function Header() {
     <>
       <Navbar className="sticky inset-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
-          <Typography
-            as="a"
-            href="#"
-            className="mr-4 cursor-pointer py-1.5 font-medium"
-          >
+          <Typography as="a" className="mr-4 cursor-pointer py-1.5 font-medium">
             <Link to="/">CONSISTENCY</Link>
           </Typography>
           <div className="flex items-center gap-4">
