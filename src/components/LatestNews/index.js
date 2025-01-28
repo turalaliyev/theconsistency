@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import LatestCard from '../../UI/LatestCard';
-import { collection, getDocs, limit, query } from 'firebase/firestore';
+import { collection, getDocs, limit, query, where } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { Skeleton } from 'antd';
 
@@ -11,7 +11,11 @@ export default function LatestNews() {
   const getData = async () => {
     setLoading(true);
     try {
-      const q = query(collection(db, 'articles'), limit(5));
+      const q = query(
+        collection(db, 'articles'),
+        where('approved', '==', true),
+        limit(5)
+      );
       const querySnapshot = await getDocs(q);
       setData(querySnapshot.docs);
     } catch (error) {

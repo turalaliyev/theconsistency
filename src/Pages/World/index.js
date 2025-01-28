@@ -15,6 +15,7 @@ function WorldPage() {
       const q = query(
         collection(db, 'articles'),
         where('categories', 'array-contains', 'world'),
+        where('approved', '==', true),
         limit(5)
       );
       const querySnapshot = await getDocs(q);

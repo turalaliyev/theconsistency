@@ -15,6 +15,7 @@ function AsiaPage() {
       const q = query(
         collection(db, 'articles'),
         where('categories', 'array-contains', 'asia'),
+        where('approved', '==', true),
         limit(5)
       );
       const querySnapshot = await getDocs(q);

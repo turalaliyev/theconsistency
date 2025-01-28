@@ -15,6 +15,7 @@ function BusinessPage() {
       const q = query(
         collection(db, 'articles'),
         where('categories', 'array-contains', 'business'),
+        where('approved', '==', true),
         limit(5)
       );
       const querySnapshot = await getDocs(q);

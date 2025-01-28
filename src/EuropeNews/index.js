@@ -15,6 +15,7 @@ export default function EuropeNews(props) {
       const q = query(
         collection(db, 'articles'),
         where('categories', 'array-contains', props.category),
+        where('approved', '==', true),
         limit(3)
       );
       const querySnapshot = await getDocs(q);
